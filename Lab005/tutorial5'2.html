@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation Example</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone"><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword"><br>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (email === '' || phone === '' || password === '' || confirmPassword === '') {
+                alert('Error: Input is empty!');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                alert('Error: Invalid email address!');
+                return;
+            }
+
+            if (!isValidPhone(phone)) {
+                alert('Error: Invalid phone number!');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Error: Passwords do not match!');
+                return;
+            }
+
+            // If everything is valid, you can submit the form or perform further actions here.
+            // For example, document.getElementById('myForm').submit();
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            return /^\d{10}$/.test(phone);
+        }
+    </script>
+</body>
+</html>
